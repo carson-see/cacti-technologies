@@ -1,7 +1,5 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
-
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 export type AuditResult = {
@@ -36,6 +34,15 @@ function generateTeaser(perf: number | null, seo: number | null): string {
     return `Not bad — ${perfScore}/100 speed and ${seoScore}/100 SEO — but there's easy headroom to outrank your local competitors.`;
   }
   return `Solid scores (${perfScore}/100 speed, ${seoScore}/100 SEO)! Let's fine-tune the details that separate good from dominant.`;
+}
+
+async function getPrisma() {
+  try {
+    const { prisma } = await import("@/lib/prisma");
+    return prisma;
+  } catch {
+    return null;
+  }
 }
 
 // ── Server Actions ─────────────────────────────────────────────────────────────
@@ -76,25 +83,35 @@ export async function runSeoAudit(url: string): Promise<AuditResult> {
         : null;
     }
   } catch {
-    // API failure — we still save the lead with null scores
+    // API failure — continue with null scores
   }
 
   const teaserText = generateTeaser(performanceScore, seoScore);
 
-  const lead = await prisma.auditLead.create({
-    data: {
-      websiteUrl: targetUrl,
-      performanceScore,
-      seoScore,
-      accessibilityScore,
-      teaserText,
-      status: "Scanned",
-    },
-  });
+  // Try to save to DB; if no database configured, still return results
+  let leadId = crypto.randomUUID();
+  try {
+    const prisma = await getPrisma();
+    if (prisma) {
+      const lead = await prisma.auditLead.create({
+        data: {
+          websiteUrl: targetUrl,
+          performanceScore,
+          seoScore,
+          accessibilityScore,
+          teaserText,
+          status: "Scanned",
+        },
+      });
+      leadId = lead.id;
+    }
+  } catch {
+    // DB not connected — audit still works for the user
+  }
 
   return {
-    id: lead.id,
-    websiteUrl: lead.websiteUrl,
+    id: leadId,
+    websiteUrl: targetUrl,
     performanceScore,
     seoScore,
     accessibilityScore,
@@ -106,10 +123,17 @@ export async function captureAuditEmail(
   id: string,
   email: string
 ): Promise<{ success: boolean }> {
-  await prisma.auditLead.update({
-    where: { id },
-    data: { email, status: "Email Captured" },
-  });
+  try {
+    const prisma = await getPrisma();
+    if (prisma) {
+      await prisma.auditLead.update({
+        where: { id },
+        data: { email, status: "Email Captured" },
+      });
+    }
+  } catch {
+    // DB not connected — still acknowledge to user
+  }
   return { success: true };
 }
 
@@ -118,13 +142,20 @@ export async function saveChatLead(
   email: string,
   message?: string
 ): Promise<{ success: boolean }> {
-  await prisma.chatLead.create({
-    data: {
-      email,
-      requestedService: service,
-      message: message ?? null,
-      status: "New",
-    },
-  });
+  try {
+    const prisma = await getPrisma();
+    if (prisma) {
+      await prisma.chatLead.create({
+        data: {
+          email,
+          requestedService: service,
+          message: message ?? null,
+          status: "New",
+        },
+      });
+    }
+  } catch {
+    // DB not connected — still acknowledge to user
+  }
   return { success: true };
 }
