@@ -36,10 +36,10 @@ function generateTeaser(perf: number | null, seo: number | null): string {
   return `Solid scores (${perfScore}/100 speed, ${seoScore}/100 SEO)! Let's fine-tune the details that separate good from dominant.`;
 }
 
-async function getPrisma() {
+async function getSupabase() {
   try {
-    const { prisma } = await import("@/lib/prisma");
-    return prisma;
+    const { supabase } = await import("@/lib/supabase");
+    return supabase;
   } catch {
     return null;
   }
@@ -48,7 +48,6 @@ async function getPrisma() {
 // ── Server Actions ─────────────────────────────────────────────────────────────
 
 export async function runSeoAudit(url: string): Promise<AuditResult> {
-  // Normalize URL
   let targetUrl = url.trim();
   if (!targetUrl.startsWith("http")) {
     targetUrl = `https://${targetUrl}`;
@@ -88,25 +87,27 @@ export async function runSeoAudit(url: string): Promise<AuditResult> {
 
   const teaserText = generateTeaser(performanceScore, seoScore);
 
-  // Try to save to DB; if no database configured, still return results
   let leadId = crypto.randomUUID();
   try {
-    const prisma = await getPrisma();
-    if (prisma) {
-      const lead = await prisma.auditLead.create({
-        data: {
-          websiteUrl: targetUrl,
-          performanceScore,
-          seoScore,
-          accessibilityScore,
-          teaserText,
+    const supabase = await getSupabase();
+    if (supabase) {
+      const { data } = await supabase
+        .from("audit_leads")
+        .insert({
+          website_url: targetUrl,
+          performance_score: performanceScore,
+          seo_score: seoScore,
+          accessibility_score: accessibilityScore,
+          teaser_text: teaserText,
           status: "Scanned",
-        },
-      });
-      leadId = lead.id;
+        })
+        .select("id")
+        .single();
+
+      if (data) leadId = data.id;
     }
   } catch {
-    // DB not connected — audit still works for the user
+    // DB not connected — audit still works
   }
 
   return {
@@ -124,15 +125,15 @@ export async function captureAuditEmail(
   email: string
 ): Promise<{ success: boolean }> {
   try {
-    const prisma = await getPrisma();
-    if (prisma) {
-      await prisma.auditLead.update({
-        where: { id },
-        data: { email, status: "Email Captured" },
-      });
+    const supabase = await getSupabase();
+    if (supabase) {
+      await supabase
+        .from("audit_leads")
+        .update({ email, status: "Email Captured" })
+        .eq("id", id);
     }
   } catch {
-    // DB not connected — still acknowledge to user
+    // DB not connected
   }
   return { success: true };
 }
@@ -143,19 +144,17 @@ export async function saveChatLead(
   message?: string
 ): Promise<{ success: boolean }> {
   try {
-    const prisma = await getPrisma();
-    if (prisma) {
-      await prisma.chatLead.create({
-        data: {
-          email,
-          requestedService: service,
-          message: message ?? null,
-          status: "New",
-        },
+    const supabase = await getSupabase();
+    if (supabase) {
+      await supabase.from("chat_leads").insert({
+        email,
+        requested_service: service,
+        message: message ?? null,
+        status: "New",
       });
     }
   } catch {
-    // DB not connected — still acknowledge to user
+    // DB not connected
   }
   return { success: true };
 }
