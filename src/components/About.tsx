@@ -37,10 +37,12 @@ export default function About() {
               Carson Seeger, MBA
             </p>
             <p className="mt-3 text-base leading-relaxed text-slate-500">
-              After years leading technology initiatives at Fortune 500
-              companies, I saw the same pattern: small businesses in West
-              Michigan were being left behind — priced out of the tools and
-              strategies that their bigger competitors use every day.
+              Cacti Technologies is a Grand Rapids, Michigan tech agency
+              founded by Carson Seeger, MBA, A-CSM, SAFe 5.0. After years
+              leading technology initiatives at Fortune 500 companies, I saw
+              the same pattern: small businesses in West Michigan were being
+              left behind — priced out of the tools and strategies that their
+              bigger competitors use every day.
             </p>
             <p className="mt-3 text-base leading-relaxed text-slate-500">
               I founded Cacti Technologies to change that. We bring

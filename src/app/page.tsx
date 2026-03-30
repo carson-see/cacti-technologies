@@ -6,6 +6,7 @@ import Results from "@/components/Results";
 import Portfolio from "@/components/Portfolio";
 import About from "@/components/About";
 import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatbotWidget from "@/components/ChatbotWidget";
@@ -21,6 +22,7 @@ export default function Home() {
       <Portfolio />
       <About />
       <Pricing />
+      <FAQ />
       <Contact />
       <Footer />
       <ChatbotWidget />

@@ -93,12 +93,12 @@ const jsonLd = {
       name: "Web Design & Local SEO",
       provider: { "@id": "https://cactitechnologies.com/#business" },
       description:
-        "Custom responsive websites starting at \ per page with mobile-first design, local SEO setup, and Google Business optimization.",
+        "Custom responsive websites starting at $300 per page with mobile-first design, local SEO setup, and Google Business optimization.",
       offers: {
         "@type": "Offer",
         price: "300",
         priceCurrency: "USD",
-        description: "Single page website, \ per additional page",
+        description: "Single page website, $200 per additional page",
       },
       areaServed: {
         "@type": "City",
@@ -137,26 +137,50 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "How much does a website cost in Grand Rapids?",
+          name: "How much does a website cost in Grand Rapids, MI?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "At Cacti Technologies, a custom single-page website starts at \, with additional pages at \ each. Most Grand Rapids agencies charge \,500-\,000 for similar work.",
+            text: "Cacti Technologies offers custom single-page websites starting at $300, with additional pages at $200 each. For businesses that need ongoing local SEO, AI chatbot, and CRM automation, the Growth plan is $149 per month. All projects begin with a free consultation.",
           },
         },
         {
           "@type": "Question",
-          name: "What is included in the Growth package?",
+          name: "What does Cacti Technologies do?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The Growth package (\/month) includes a custom multi-page website, ongoing local SEO and Google rankings optimization, an AI chatbot for lead qualification, CRM and email automation, monthly performance reports, and priority support.",
+            text: "Cacti Technologies is a Grand Rapids, MI tech agency that provides web design, local SEO, AI automation, and tech rescue services for small businesses. Founded by Carson Seeger, MBA, the agency brings Fortune 500 methodology to local businesses at accessible price points.",
           },
         },
         {
           "@type": "Question",
-          name: "Do you offer AI chatbots for small businesses?",
+          name: "How long does it take to build a website?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Our Growth package includes a custom AI chatbot that qualifies leads, answers common questions, and routes inquiries automatically. Most competitors charge \,000-\,000 just for the chatbot build.",
+            text: "Most single-page websites are delivered within 1 to 2 weeks. Larger projects with integrations and AI automations typically take 2 to 4 weeks. Every project starts within one week of approval.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you only work with businesses in Grand Rapids?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Cacti Technologies is based in Grand Rapids, Michigan and primarily serves small businesses in West Michigan. However, we work with clients anywhere in the US who need web development, AI automation, or tech rescue services.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What is an AI chatbot and how can it help my business?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "An AI chatbot is an automated assistant on your website that answers customer questions, qualifies leads, and schedules appointments 24/7. Cacti Technologies builds custom AI chatbots that integrate with your existing tools and can save small businesses 10 to 15 hours per week on routine customer interactions.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do I need to sign a long-term contract?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. Cacti Technologies does not require long-term contracts. One-time projects like websites have a fixed price with no recurring fees. The Growth plan is month-to-month and can be cancelled at any time. Tech rescue work is billed hourly at $75/hour with no minimum hours.",
           },
         },
       ],

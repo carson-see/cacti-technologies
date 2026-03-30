@@ -59,7 +59,12 @@ export default function Services() {
             <span className="text-cactus">Your tech shouldn&apos;t make it harder.</span>
           </h2>
           <p className="mt-4 text-lg text-slate-500">
-            Three ways we help local businesses compete with the big guys — without the big-guy budget.
+            Cacti Technologies provides three core services for small businesses
+            in Grand Rapids, MI and West Michigan: custom web design with local
+            SEO that ranks on Google, AI chatbots and workflow automation that
+            save hours of manual work each week, and tech rescue services that
+            fix broken systems and integrate disconnected tools. Pricing starts
+            at $300.
           </p>
         </div>
 

@@ -59,8 +59,12 @@ export default function Pricing() {
             <span className="text-cactus">No Surprises.</span>
           </h2>
           <p className="mt-4 text-lg text-slate-500">
-            Every project starts with a free consultation. You&apos;ll know exactly
-            what you&apos;re getting before you spend a dollar.
+            Cacti Technologies pricing starts at $300 for a custom single-page
+            website, $149/month for the Growth plan (website + local SEO + AI
+            chatbot + CRM automation), and $75/hour for tech rescue and legacy
+            system work. Every engagement begins with a free consultation. No
+            hidden fees, no long-term contracts, no minimum hours for hourly
+            work.
           </p>
         </div>
 
