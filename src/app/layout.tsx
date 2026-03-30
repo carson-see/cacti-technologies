@@ -40,38 +40,37 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
+      "@type": "ProfessionalService",
       "@id": "https://cactitechnologies.com/#business",
       name: "Cacti Technologies",
       url: "https://cactitechnologies.com",
       description:
-        "Grand Rapids tech agency specializing in web design, local SEO, AI automations, and tech rescue for small businesses.",
-      founder: {
-        "@type": "Person",
-        name: "Carson Seeger",
-        jobTitle: "Founder & Lead Developer",
-        hasCredential: [
-          { "@type": "EducationalOccupationalCredential", credentialCategory: "MBA", name: "Master of Business Administration" },
-          { "@type": "EducationalOccupationalCredential", credentialCategory: "Certification", name: "Advanced Certified ScrumMaster (A-CSM)" },
-          { "@type": "EducationalOccupationalCredential", credentialCategory: "Certification", name: "SAFe 5.0 Certified" },
-        ],
-      },
+        "Grand Rapids tech agency specializing in web design, local SEO, AI automations, and tech rescue for small businesses. Fortune 500 experience, Main Street pricing.",
+      email: "carsonseeger@proton.me",
+      image: "https://cactitechnologies.com/carson-headshot.png",
+      founder: { "@id": "https://cactitechnologies.com/#founder" },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Grand Rapids",
         addressRegion: "MI",
         addressCountry: "US",
       },
-      areaServed: {
-        "@type": "GeoCircle",
-        geoMidpoint: {
-          "@type": "GeoCoordinates",
-          latitude: 42.9634,
-          longitude: -85.6681,
-        },
-        geoRadius: "80000",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 42.9634,
+        longitude: -85.6681,
       },
-      priceRange: "$$",
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Grand Rapids",
+          sameAs: "https://en.wikipedia.org/wiki/Grand_Rapids,_Michigan",
+        },
+        { "@type": "State", name: "Michigan" },
+      ],
+      priceRange: "$75-$300",
+      currenciesAccepted: "USD",
+      foundingDate: "2026",
       knowsAbout: [
         "Web Design",
         "Local SEO",
@@ -79,6 +78,37 @@ const jsonLd = {
         "Business Automation",
         "Legacy System Migration",
         "API Integration",
+        "Google Business Optimization",
+      ],
+      sameAs: [
+        "https://github.com/carson-see/cacti-technologies",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": "https://cactitechnologies.com/#founder",
+      name: "Carson Seeger",
+      jobTitle: "Founder",
+      url: "https://cactitechnologies.com/#about",
+      image: "https://cactitechnologies.com/carson-headshot.png",
+      description:
+        "Founder of Cacti Technologies. MBA with Fortune 500 technology leadership experience, bringing enterprise-grade solutions to local businesses in Grand Rapids, MI.",
+      worksFor: { "@id": "https://cactitechnologies.com/#business" },
+      hasCredential: [
+        { "@type": "EducationalOccupationalCredential", credentialCategory: "degree", name: "MBA", about: "Business Strategy" },
+        { "@type": "EducationalOccupationalCredential", credentialCategory: "certificate", name: "A-CSM", about: "Agile Leadership" },
+        { "@type": "EducationalOccupationalCredential", credentialCategory: "certificate", name: "SAFe 5.0", about: "Enterprise Scaling" },
+      ],
+      knowsAbout: [
+        "Web Development",
+        "Search Engine Optimization",
+        "Artificial Intelligence",
+        "Business Automation",
+        "Systems Integration",
+        "Agile Methodology",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/carsonseeger/",
       ],
     },
     {
@@ -87,6 +117,21 @@ const jsonLd = {
       url: "https://cactitechnologies.com",
       name: "Cacti Technologies",
       publisher: { "@id": "https://cactitechnologies.com/#business" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://cactitechnologies.com/#webpage",
+      name: "Cacti Technologies | Enterprise-Grade Tech for Local Business",
+      description:
+        "Grand Rapids tech agency specializing in web design, local SEO, AI automations, and tech rescue for small businesses.",
+      url: "https://cactitechnologies.com",
+      isPartOf: { "@id": "https://cactitechnologies.com/#website" },
+      about: { "@id": "https://cactitechnologies.com/#business" },
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["#services h2", "#services p", "#about h2", "#about p", "#pricing h2", "#pricing p", "#faq h3", "#faq p"],
+      },
+      lastReviewed: "2026-03-29",
     },
     {
       "@type": "Service",
