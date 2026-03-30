@@ -1,0 +1,20 @@
+# Cacti Technologies
+> Local tech agency in Grand Rapids, Michigan
+
+## What We Do
+Cacti Technologies builds websites, sets up AI automations, and fixes broken tech for small businesses in West Michigan. Founded by Carson Seeger, MBA — former Fortune 500 technology leader.
+
+## Services
+- Custom websites (starting at $300)
+- AI chatbots and workflow automations
+- Local SEO and Google Business optimization
+- Tech rescue and system fixes ($75/hr)
+- Growth retainers ($149/mo)
+
+## Contact
+- Email: carsonseeger@proton.me
+- Location: Grand Rapids, Michigan
+- Website: https://cactitechnologies.com
+
+## Portfolio
+- Arkova (https://arkova.ai) — Enterprise credential verification platform with Bitcoin-anchored document integrity, AI-powered extraction, and compliance dashboards. 166K+ records secured, 320K+ public records.
